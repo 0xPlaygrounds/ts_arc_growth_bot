@@ -1,13 +1,13 @@
 import dotenv from "dotenv";
 import TelegramBot from "node-telegram-bot-api";
 import { Client, GatewayIntentBits, TextChannel } from "discord.js";
-import { getTelegramStats } from "./telegram";
-import { getStarsStats } from "./github/stars";
-import { getForksStats } from "./github/forks";
-import { getReleaseVersion } from "./github/versions";
-import { getTokenStats } from "./holders";
-import { getXFollowersStats } from "./followers";
-import { checkMilestones, MILESTONES } from "./milestone";
+import { getTelegramStats } from "../data-extract/telegram";
+import { getStarsStats } from "../data-extract/github/stars";
+import { getForksStats } from "../data-extract/github/forks";
+import { getReleaseVersion } from "../data-extract/github/versions";
+import { getTokenStats } from "../data-extract/holders";
+import { getXFollowersStats } from "../data-extract/followers";
+import { checkMilestones, MILESTONES } from "../data-extract/milestone";
 
 dotenv.config();
 

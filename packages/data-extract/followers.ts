@@ -16,7 +16,7 @@ async function scrapeXProfile(url: string): Promise<any | null> {
     });
     const page = await context.newPage();
 
-    page.on("response", (response) => {
+    page.on("response", (response: any) => {
         if (response.request().resourceType() === "xhr") xhrCalls.push(response);
     });
 

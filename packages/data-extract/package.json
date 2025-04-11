@@ -1,0 +1,30 @@
+{
+  "name": "@ts-arc/data-extract",
+  "version": "1.0.0",
+  "description": "Data extraction tools for ARC growth bot",
+  "main": "dist/main.js",
+  "types": "dist/main.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/main.js",
+    "dev": "ts-node main.ts",
+    "cron": "node dist/main.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.2",
+    "dotenv": "^16.3.1",
+    "json2csv": "^5.0.7",
+    "node-cron": "^3.0.2",
+    "node-telegram-bot-api": "^0.64.0",
+    "parquetjs": "^0.11.2",
+    "playwright": "^1.40.0"
+  },
+  "devDependencies": {
+    "@types/json2csv": "^5.0.7",
+    "@types/node": "^20.10.0",
+    "@types/node-cron": "^3.0.11",
+    "@types/node-telegram-bot-api": "^0.64.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.3.2"
+  }
+} 

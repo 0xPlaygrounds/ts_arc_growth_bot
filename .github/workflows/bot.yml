@@ -37,7 +37,7 @@ jobs:
         run: npx playwright install --with-deps  # Install the required Playwright browsers
 
       # Step 5: Run the bot script
-      - run: npx ts-node api/bot.ts  # Run the bot, which updates the CSV files
+      - run: npx ts-node packages/tg-bot/bot.ts  # Run the bot, which updates the CSV files
 
       # Step 6: Commit and Push Data Changes to GitHub (original push)
       - name: Commit and Push Data Changes

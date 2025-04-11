@@ -1,5 +1,5 @@
 {
-  "name": "arc_metrics_evidence",
+  "name": "my-evidence-project",
   "version": "0.0.1",
   "scripts": {
     "build": "evidence build",

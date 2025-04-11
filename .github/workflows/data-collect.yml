@@ -1,0 +1,49 @@
+name: Data Collection
+
+on:
+  schedule:
+    # Run every 12 hours (midnight and noon UTC)
+    - cron: '0 0,12 * * *'
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  collect-data:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'npm'
+          cache-dependency-path: packages/data-extract/package.json
+          
+      - name: Install dependencies
+        working-directory: packages/data-extract
+        run: npm ci
+        
+      - name: Install Playwright dependencies
+        working-directory: packages/data-extract
+        run: npx playwright install chromium
+        
+      - name: Build TypeScript code
+        working-directory: packages/data-extract
+        run: npm run build
+        
+      - name: Run data collection
+        working-directory: packages/data-extract
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          REPO: ${{ secrets.GITHUB_REPO }}
+        run: node dist/main.js
+        
+      - name: Commit and push if changes
+        run: |
+          git config --global user.name 'GitHub Action'
+          git config --global user.email 'action@github.com'
+          git add packages/data-extract/public/data/
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update metrics data [skip ci]" && git push) 
